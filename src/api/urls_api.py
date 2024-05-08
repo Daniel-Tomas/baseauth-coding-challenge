@@ -9,6 +9,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import include, path, re_path
 
+from .views.autocomplete_user import AutocompleteUserView
 from .views.autosuggest_lookup import lookup_view
 from .views.autosuggest_lookup_search import lookup_view_search
 from .views.autosuggest_user import autosuggest_user
@@ -72,6 +73,8 @@ urlpatterns = [
         autosuggest_user,
         name='autosuggest_user',
     ),
+    # Autocomplete
+    path('autocomplete/', AutocompleteUserView.as_view(), name='autocomplete'),
     # Open API routes
     path('openapi.yaml', SpectacularAPIView.as_view(), name='schema-yaml'),
     path('openapi.json', SpectacularJSONAPIView.as_view(), name='schema-json'),
